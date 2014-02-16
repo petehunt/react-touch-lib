@@ -1,6 +1,6 @@
 {
   "name": "react-touch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React component library for building inertial touch applications.",
   "main": "lib/ReactTouch.js",
   "dependencies": {
