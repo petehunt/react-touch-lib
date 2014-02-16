@@ -15,6 +15,7 @@ var AnimatableContainer = React.createClass({
       contentComponent: React.DOM.span,
       opacity: 1,
       rotate: null,
+      scale: null,
       timeout: 200,
       translate: null
     };
@@ -90,8 +91,12 @@ var AnimatableContainer = React.createClass({
         'rotate3d(' + (props.rotate.x || 0) + ', ' +
         (props.rotate.y || 0) + ', ' +
         (props.rotate.z || 0) + ', ' +
-        props.rotate.deg + 'deg)'
+        props.rotate.deg + 'deg) '
       );
+    }
+
+    if (props.scale) {
+      transforms += 'scale(' + props.scale + ') ';
     }
 
     if (transforms.length > 0) {
