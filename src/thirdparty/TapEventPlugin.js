@@ -19,6 +19,7 @@
 
 "use strict";
 
+var EventConstants = require('react/lib/EventConstants');
 var EventPluginUtils = require('react/lib/EventPluginUtils');
 var EventPropagators = require('react/lib/EventPropagators');
 var SyntheticUIEvent = require('react/lib/SyntheticUIEvent');
@@ -26,6 +27,7 @@ var TouchEventUtils = require('./TouchEventUtils');
 var ViewportMetrics = require('react/lib/ViewportMetrics');
 
 var keyOf = require('react/lib/keyOf');
+var topLevelTypes = EventConstants.topLevelTypes;
 
 var isStartish = EventPluginUtils.isStartish;
 var isEndish = EventPluginUtils.isEndish;
@@ -61,12 +63,28 @@ function getDistance(coords, nativeEvent) {
   );
 }
 
+var dependencies = [
+  topLevelTypes.topMouseDown,
+  topLevelTypes.topMouseMove,
+  topLevelTypes.topMouseUp
+];
+
+if (EventPluginUtils.useTouchEvents) {
+  dependencies.push(
+    topLevelTypes.topTouchCancel,
+    topLevelTypes.topTouchEnd,
+    topLevelTypes.topTouchStart,
+    topLevelTypes.topTouchMove
+  );
+}
+
 var eventTypes = {
   touchTap: {
     phasedRegistrationNames: {
       bubbled: keyOf({onTouchTap: null}),
       captured: keyOf({onTouchTapCapture: null})
-    }
+    },
+    dependencies: dependencies
   }
 };
 
