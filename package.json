@@ -3,9 +3,10 @@
   "version": "0.0.4",
   "description": "React component library for building inertial touch applications.",
   "main": "lib/ReactTouch.js",
-  "dependencies": {
-    "react": "~0.8"
+  "peerDependencies": {
+    "react": "~0.9"
   },
+  "dependencies": {},
   "devDependencies": {
     "jsxc": "~0.1.4"
   },
